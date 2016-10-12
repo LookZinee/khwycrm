@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class PageController {
 	@RequestMapping("{page}")
 	public String tiaozhuan(@PathVariable String page){
+		
 		return page;
 	}
 }
