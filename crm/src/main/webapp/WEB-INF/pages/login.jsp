@@ -1,8 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+ <base href="<%=basePath%>">
 <%@ include file="commons/head.jsp" %>
 </head>
 <body>
@@ -10,17 +15,17 @@
 <div class="header"></div>
 <div class="loginWraper">
   <div id="loginform" class="loginBox">
-    <form class="form form-horizontal" action="index.html" method="post">
+    <form class="form form-horizontal" action="user/login" method="post">
       <div class="row cl">
         <label class="form-label col-3"><i class="Hui-iconfont">&#xe60d;</i></label>
         <div class="formControls col-8">
-          <input id="" name="" type="text" placeholder="账户" class="input-text size-L">
+          <input id="" name="name" type="text" placeholder="账户" class="input-text size-L">
         </div>
       </div>
       <div class="row cl">
         <label class="form-label col-3"><i class="Hui-iconfont">&#xe60e;</i></label>
         <div class="formControls col-8">
-          <input id="" name="" type="password" placeholder="密码" class="input-text size-L">
+          <input id="" name="pwd" type="password" placeholder="密码" class="input-text size-L">
         </div>
       </div>
       <div class="row cl">
