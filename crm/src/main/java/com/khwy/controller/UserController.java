@@ -19,12 +19,13 @@ public class UserController {
 		try {
 			Subject subject = SecurityUtils.getSubject();
 			UsernamePasswordToken token = new UsernamePasswordToken(name, pwd);
+			token.setRememberMe(true);
 			subject.login(token);
+			
 //			if(subject.isAuthenticated()){
 //				return "redirect:/index";
 //			}
 		} catch (AuthenticationException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		System.out.println("111");

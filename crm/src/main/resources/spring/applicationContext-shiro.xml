@@ -20,6 +20,7 @@
 	<!-- 这里主要是设置自定义的单Realm应用,若有多个Realm,可使用'realms'属性代替 -->
 	<bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
 		<property name="realm" ref="shiroRealm" />
+		<property name="rememberMeManager" ref="rememberMeManager" />
 	</bean>
 
 	<!-- Shiro主过滤器本身功能十分强大,其强大之处就在于它支持任何基于URL路径表达式的、自定义的过滤器的执行 -->
@@ -43,7 +44,7 @@
 				/login=anon
 				/user/login=anon
 				/error=anon
-				/index/**=authc,roles["role1"]
+				/index/**=user
 			</value>
 		</property>
 	</bean>
@@ -54,7 +55,18 @@
 	<!-- 如 UserRealm 就实现了 Initializable -->
 	<!-- DefaultSecurityManager 实现了Destroyable -->
 	<bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor" />
-
+	<!-- rememberMe 配置  -->
+	<bean id="rememberMeCookie" class="org.apache.shiro.web.servlet.SimpleCookie">
+		<constructor-arg value="rememberMe"/>
+		<property name="httpOnly" value="true"></property>
+		<property name="maxAge" value="604800"/>
+	</bean>
+	<!--  设置单个realm的的应用，如若有多个realm，可使用realms来设置 -->
+	<bean id="rememberMeManager" class="org.apache.shiro.web.mgt.CookieRememberMeManager">
+		<property name="cipherKey" value="#{T(org.apache.shiro.codec.Base64).decode('4AvVhmFLUsOKTA3Kprsdag==')}"/>
+		<property name="cookie" ref="rememberMeCookie"></property>
+	</bean>
+	
 	<!-- 开启Shiro的注解(如@RequiresRoles,@RequiresPermissions) -->
 	<bean
 		class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator"

@@ -53,5 +53,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	</div>
 </section>
 <%@ include file="commons/script.jsp" %>
+
 </body>
 </html>
