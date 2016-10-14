@@ -1,13 +1,8 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%
-String path = request.getContextPath();
-String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
-%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
- <base href="<%=basePath%>">
 <%@ include file="commons/head.jsp" %>
 </head>
 <body>
@@ -30,14 +25,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
       </div>
       <div class="row cl">
         <div class="formControls col-8 col-offset-3">
-          <input class="input-text size-L" type="text" placeholder="验证码" onblur="if(this.value==''){this.value='验证码:'}" onclick="if(this.value=='验证码:'){this.value='';}" value="验证码:" style="width:150px;">
-            <img src="code" id="validateCode"/><a id="kanbuq" href="javascript:;">看不清，换一张</a> </div>
+          <input class="input-text size-L" type="text" placeholder="验证码" onblur="if(this.value==''){this.value=''}" onclick="if(this.value==''){this.value='';}" style="width:150px;">
+          <img src="code" id="validateCode"/> <a id="kanbuq" style="text-decoration: none;" onclick="changeCode()" href="javascript:;">看不清，换一张</a> </div>
       </div>
       <div class="row">
         <div class="formControls col-8 col-offset-3">
           <label for="online">
-            <input type="checkbox" name="online" id="online" value="">
-            使我保持登录状态</label>
+            <input type="checkbox" name="online" id="online" value="">使我保持登录状态</label>
         </div>
       </div>
       <div class="row">
@@ -49,19 +43,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     </form>
   </div>
 </div>
-<div class="footer">Copyright 你的公司名称 by H-ui.admin.v2.3</div>
-<script type="text/javascript" src="lib/jquery/1.9.1/jquery.min.js"></script> 
-<script type="text/javascript" src="js/H-ui.js"></script> 
-<script>
-var _hmt = _hmt || [];
-(function() {
-  var hm = document.createElement("script");
-  hm.src = "//hm.baidu.com/hm.js?080836300300be57b7f34f4b3e97d911";
-  var s = document.getElementsByTagName("script")[0]; 
-  s.parentNode.insertBefore(hm, s);
-})();
-var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
-document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F080836300300be57b7f34f4b3e97d911' type='text/javascript'%3E%3C/script%3E"));
+<div class="footer">Copyright khwy by J04</div>
+<script type="text/javascript">
+	function changeCode(){
+		var timestamp = (new Date()).valueOf();
+		$("#validateCode").attr("src","code?timestamp="+timestamp);
+	}
 </script>
-</body>
 </html>

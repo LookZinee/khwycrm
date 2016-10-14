@@ -5,6 +5,7 @@ import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -29,6 +30,16 @@ public class UserController {
 		System.out.println("111");
 		return "redirect:/index";
 //		return "login";
+	}
+	@RequestMapping("/logout")
+	public String logout(){
+		try {
+			Subject subject = SecurityUtils.getSubject();
+			subject.logout();
+		} catch (Exception e) {
+			LoggerFactory.getLogger(this.getClass()).error("退出异常",e);
+		}
+		return "redirect:/index";
 	}
 	
 }

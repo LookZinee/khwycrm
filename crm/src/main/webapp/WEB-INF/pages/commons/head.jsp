@@ -1,23 +1,27 @@
-<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
+<%@taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
+<c:set var="ctx" value="${pageContext.request.contextPath}"/>
 <meta charset="utf-8">
 <meta name="renderer" content="webkit|ie-comp|ie-stand">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
 <meta http-equiv="Cache-Control" content="no-siteapp" />
 <!--[if lt IE 9]>
-<script type="text/javascript" src="lib/html5.js"></script>
-<script type="text/javascript" src="lib/respond.min.js"></script>
-<script type="text/javascript" src="lib/PIE_IE678.js"></script>
+<script type="text/javascript" src="${ctx}/lib/html5.js"></script>
+<script type="text/javascript" src="${ctx}/lib/respond.min.js"></script>
+<script type="text/javascript" src="${ctx}/lib/PIE_IE678.js"></script>
 <![endif]-->
-<link href="css/H-ui.min.css" rel="stylesheet" type="text/css" />
-<link href="css/H-ui.login.css" rel="stylesheet" type="text/css" />
-<link href="css/style.css" rel="stylesheet" type="text/css" />
+<link href="${ctx}/css/H-ui.min.css" rel="stylesheet" type="text/css" />
+<link href="${ctx}/css/H-ui.login.css" rel="stylesheet" type="text/css" />
+<link href="${ctx}/css/H-ui.admin.css" rel="stylesheet" type="text/css" />
+<link href="skin/default/skin.css" rel="stylesheet" type="text/css" id="skin" />
+<link href="${ctx}/css/style.css" rel="stylesheet" type="text/css" />
 <link href="lib/Hui-iconfont/1.0.1/iconfont.css" rel="stylesheet" type="text/css" />
-<!--[if IE 6]>
-<script type="text/javascript" src="http://lib.h-ui.net/DD_belatedPNG_0.0.8a-min.js" ></script>
-<script>DD_belatedPNG.fix('*');</script>
-<![endif]-->
-<title>后台登录 - H-ui.admin v2.3</title>
-<meta name="keywords" content="H-ui.admin v2.3,H-ui网站后台模版,后台模版下载,后台管理系统模版,HTML后台模版下载">
-<meta name="description" content="H-ui.admin v2.3，是一款由国人开发的轻量级扁平化网站后台模板，完全免费开源的网站后台管理系统模版，适合中小型CMS后台系统。">
+<title>客户无忧-客户关系管理系统</title>
+<script type="text/javascript" src="${ctx}/lib/jquery/1.9.1/jquery.min.js"></script>
