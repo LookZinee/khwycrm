@@ -14,24 +14,24 @@
       <div class="row cl">
         <label class="form-label col-3"><i class="Hui-iconfont">&#xe60d;</i></label>
         <div class="formControls col-8">
-          <input id="" name="name" type="text" placeholder="账户" class="input-text size-L">
+          <input id="" name="username" type="text" placeholder="账户" class="input-text size-L">
         </div>
       </div>
       <div class="row cl">
         <label class="form-label col-3"><i class="Hui-iconfont">&#xe60e;</i></label>
         <div class="formControls col-8">
-          <input id="" name="pwd" type="password" placeholder="密码" class="input-text size-L">
+          <input id="" name="password" type="password" placeholder="密码" class="input-text size-L">
         </div>
       </div>
       <div class="row cl">
         <div class="formControls col-8 col-offset-3">
-          <input class="input-text size-L" type="text" placeholder="验证码" onblur="if(this.value==''){this.value=''}" onclick="if(this.value==''){this.value='';}" style="width:150px;">
+          <input class="input-text size-L" name="randomNum" type="text" placeholder="验证码" onblur="if(this.value==''){this.value=''}" onclick="if(this.value==''){this.value='';}" style="width:150px;">
           <img src="code" id="validateCode"/> <a id="kanbuq" style="text-decoration: none;" onclick="changeCode()" href="javascript:;">看不清，换一张</a> </div>
       </div>
       <div class="row">
         <div class="formControls col-8 col-offset-3">
           <label for="online">
-            <input type="checkbox" name="online" id="online" value="">使我保持登录状态</label>
+            <input type="checkbox" name="online" id="online" value="1">使我保持登录状态</label>
         </div>
       </div>
       <div class="row">

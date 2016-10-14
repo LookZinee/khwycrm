@@ -1,6 +1,8 @@
 package com.khwy.controller;
 
 
+import javax.servlet.http.HttpSession;
+
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.UsernamePasswordToken;
@@ -13,18 +15,29 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class UserController {
 	@RequestMapping("/login")
-	public String login(String name,String pwd){
-		System.out.println("username:====="+name);
-		System.out.println("pwd:==========="+pwd);
+	public String login(String username,String password,String randomNum,String online,HttpSession session){
+		
+		System.out.println("username:====="+username);
+		System.out.println("pwd:==========="+password);
+		System.out.println("randomNum====="+randomNum);
+		System.out.println("online====="+online);
+		String num = (String) session.getAttribute("code");
+		System.out.println("code======"+num);
+		
+		if(!randomNum.equalsIgnoreCase(num)){
+			System.out.println("验证码错误！");
+			return "redirect:/index";
+		}
+		
 		try {
 			Subject subject = SecurityUtils.getSubject();
-			UsernamePasswordToken token = new UsernamePasswordToken(name, pwd);
-			token.setRememberMe(true);
+			UsernamePasswordToken token = new UsernamePasswordToken(username, password);
+			if("1".equals(online)){
+				token.setRememberMe(true);
+			}
+			
 			subject.login(token);
 			
-//			if(subject.isAuthenticated()){
-//				return "redirect:/index";
-//			}
 		} catch (AuthenticationException e) {
 			e.printStackTrace();
 		}
