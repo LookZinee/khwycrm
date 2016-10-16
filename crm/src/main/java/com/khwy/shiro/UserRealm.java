@@ -15,6 +15,7 @@ import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.util.ByteSource;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.khwy.pojo.Role;
 import com.khwy.pojo.User;
 import com.khwy.service.RoleService;
 import com.khwy.service.UserService;
@@ -27,16 +28,20 @@ public class UserRealm extends AuthorizingRealm{
 	@Override
 	protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
 		//授权 分配角色
-//		Set<String> roles = new HashSet<String>();
-//		roles.add("role1");
-//		roles.add("boss");
-		System.out.println("授权");
-		System.out.println("UserRealm.doGetAuthorizationInfo(principals)=="+(String)principals.getPrimaryPrincipal());
-		//Set<String> roles = roleService.findById();
-		
+		String username = (String)principals.getPrimaryPrincipal();
+		User user = userService.findById(username);
+		System.out.println(user);
+		String[] roleids = user.getRoleids().split(",");
+ 		Set<String> roles = new HashSet<>();
+ 		
+ 		
 		Set<String> permissions = new HashSet<String>();
-		permissions.add("createUser");
-		permissions.add("updateUser");
+		for (String role : roles) {
+			String[] pers =role.split(",");
+			for (String string : pers) {
+				
+			}
+		}
 		
 		SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
 		info.setStringPermissions(permissions);

@@ -8,7 +8,7 @@ public class User implements Serializable{
 	private String username;
 	private String password;
 	private String salt;
-	private String roles;
+	private String roleids;
 	public int getUserid() {
 		return userid;
 	}
@@ -27,13 +27,7 @@ public class User implements Serializable{
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public String getRoles() {
-		return roles;
-	}
-	public void setRoles(String roles) {
-		this.roles = roles;
-	}
-	
+
 	public String getSalt() {
 		return salt;
 	}
@@ -43,19 +37,28 @@ public class User implements Serializable{
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
-	public User(int userid, String username, String password, String roles) {
+	
+	public User() {
+	}
+	public String getRoleids() {
+		return roleids;
+	}
+	public void setRoleids(String roleids) {
+		this.roleids = roleids;
+	}
+	public User(int userid, String username, String password, String salt, String roleids) {
 		super();
 		this.userid = userid;
 		this.username = username;
 		this.password = password;
-		this.roles = roles;
-	}
-	public User() {
+		this.salt = salt;
+		this.roleids = roleids;
 	}
 	@Override
 	public String toString() {
-		return "User [userid=" + userid + ", username=" + username + ", password=" + password + ", roles=" + roles
-				+ "]";
+		return "User [userid=" + userid + ", username=" + username + ", password=" + password + ", salt=" + salt
+				+ ", roleids=" + roleids + "]";
 	}
+
 	
 }

@@ -1,13 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<%
-String path = request.getContextPath();
-String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
-%>
-
 <head>
-<base href="<%=basePath%>">
 <%@ include file="commons/head.jsp" %>
 <link href="css/style.css" rel="stylesheet" type="text/css" />
 </head>
@@ -19,7 +13,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			欢迎:<b><shiro:principal/></b>&nbsp;&nbsp;&nbsp;&nbsp;
 			部门:<b>部门一</b>&nbsp;&nbsp;&nbsp;&nbsp;
 			角色:<b>角色一</b>&nbsp;&nbsp;&nbsp;&nbsp;
-			<a href="user/logout">退出</a>
+			<a href="${ctx}/user/logout">退出</a>
 			</li>
 		</shiro:user>
 		<li id="Hui-skin" class="dropDown right dropDown_hover"><a href="javascript:;" title="换肤"><i class="Hui-iconfont" style="font-size:18px">&#xe62a;</i></a>
@@ -53,6 +47,5 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	</div>
 </section>
 <%@ include file="commons/script.jsp" %>
-
 </body>
 </html>

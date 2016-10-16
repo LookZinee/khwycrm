@@ -3,7 +3,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<%@ include file="../commons/head.jsp" %>
+<%@ include file="../../commons/head.jsp" %>
 </head>
 <body>
 <nav class="breadcrumb">系统管理 <span class="c-gray en">&gt;</span> 角色管理 <a class="btn btn-success radius r mr-20" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" >刷新</a></nav>
@@ -15,10 +15,10 @@
 	</div>
 	<div class="cl pd-5 bg-1 bk-gray mt-20"> 
 		<span class="r">
-			<a class="btn btn-primary radius" href="${ctx}/sys/role-add">添加</a>
-			<a class="btn btn-danger radius" href="${ctx}/sys/role-edit">修改</a> 
+			<a class="btn btn-primary radius" href="${ctx}/sys/role/add">添加</a>
+			<a class="btn btn-danger radius" href="${ctx}/sys/role/edit">修改</a> 
 			<a class="btn btn-primary radius" href="javascript:;" onclick="roleDel()">删除</a>
-			<a class="btn btn-danger radius" href="${ctx}/sys/role-authc">授权</a> 
+			<a class="btn btn-danger radius" href="${ctx}/sys/role/authc">授权</a> 
 		</span></div>
 	<div class="mt-20">
 		<table class="table table-border table-bordered table-bg table-hover table-sort">
@@ -65,7 +65,7 @@
 		</table>
 	</div>
 </div>
-<%@ include file="../commons/script.jsp" %>
+<%@ include file="../../commons/script.jsp" %>
 </body>
 <script type="text/javascript">
 	//角色删除

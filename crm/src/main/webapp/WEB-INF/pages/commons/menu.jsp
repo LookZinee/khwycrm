@@ -7,8 +7,8 @@
 			<dt><i class="Hui-iconfont">&#xe616;</i>系统设置<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
 			<dd>
 				<ul>
-					<li><a _href="${ctx}/sys/role-list" href="javascript:void(0)">角色管理</a></li>
-					<li><a _href="${ctx}/sys/org" href="javascript:void(0)">组织结构</a></li>
+					<li><a _href="${ctx}/sys/role/list" href="javascript:void(0)">角色管理</a></li>
+					<li><a _href="${ctx}/sys/org/list" href="javascript:void(0)">组织结构</a></li>
 					<li><a _href="${ctx}/sys/staff" href="javascript:void(0)">员工管理</a></li>
 					<li><a _href="${ctx}/sys/notice" href="javascript:void(0)">公告管理</a></li>
 					<li><a _href="${ctx}/sys/personal-info" href="javascript:void(0)">个人信息</a></li>
