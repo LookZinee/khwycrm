@@ -44,7 +44,7 @@
 				/login=anon
 				/user/login=anon
 				/error=anon
-				/index/**=user
+				/index/**=anon
 			</value>
 		</property>
 	</bean>

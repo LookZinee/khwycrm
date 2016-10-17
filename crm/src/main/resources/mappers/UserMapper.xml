@@ -5,7 +5,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="com.khwy.mapper.UserMapper">
 	<select id="findById" parameterType="String" resultType="com.khwy.pojo.User">
 		select 
-			username,password,salt,roleids 
+			userId,userName,password,salt,roleIds 
 		from
 			t_user
 		<where>
@@ -13,4 +13,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			and username=#{username}
 		</where>
 	</select>
+	<select id="findByUserId" parameterType="Integer" resultType="com.khwy.pojo.User">
+		select 
+			username,password,salt,roleids 
+		from
+			t_user
+		<where>
+			1=1
+			and userid=#{userid}
+		</where>
+		</select>
 </mapper>

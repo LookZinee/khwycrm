@@ -7,38 +7,40 @@
 </head>
 <body>
 <nav class="breadcrumb">
-	系统管理 <span class="c-gray en">&gt;</span>组织机构 <span class="c-gray en">&gt;</span> 修改
+	系统管理 <span class="c-gray en">&gt;</span>组织机构 <span class="c-gray en">&gt;</span> 添加
 	<a class="btn btn-success radius r mr-20" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" >刷新</a></nav>
 <div class="pd-20">
-	<form action="" method="post" class="form form-horizontal" id="form-user-character-add">
+	<form action="${ctx }/sys/org/edit" method="post" class="form form-horizontal" id="form-user-character-add">
+		<input type="hidden" name="orgId" value="${org.orgId }">
+		
 		<div class="row cl">
 			<label class="form-label col-2"><span class="c-red">*</span>组织编码：</label>
 			<div class="formControls col-5">
-				<input type="text" class="input-text" value="" placeholder="admin" id="user-name" name="user-name" datatype="*4-16" nullmsg="用户账户不能为空">
+				<input type="text" name="orgCode" class="input-text" value="${org.orgCode }" placeholder="admin" id="user-name" name="user-name" datatype="*4-16" nullmsg="用户账户不能为空">
 			</div>
 		</div>
 		<div class="row cl">
 			<label class="form-label col-2"><span class="c-red">*</span>组织简称：</label>
 			<div class="formControls col-5">
-				<input type="text" class="input-text" value="" placeholder="" id="user-name" name="user-name" datatype="*4-16" nullmsg="用户账户不能为空">
+				<input type="text" name="simpleName" class="input-text" value="${org.simpleName }" placeholder="" id="user-name" name="user-name" datatype="*4-16" nullmsg="用户账户不能为空">
 			</div>
 		</div>
 		<div class="row cl">
 			<label class="form-label col-2"><span class="c-red">*</span>组织全称：</label>
 			<div class="formControls col-5">
-				<input type="text" class="input-text" value="" placeholder="" id="user-name" name="user-name" datatype="*4-16" nullmsg="用户账户不能为空">
+				<input type="text" name="fullName" class="input-text" value="${org.fullName }" placeholder="" id="user-name" name="user-name" datatype="*4-16" nullmsg="用户账户不能为空">
 			</div>
 		</div>
 		<div class="row cl">
 			<label class="form-label col-2"><span class="c-red">*</span>部门简介：</label>
 			<div class="formControls col-5">
-				<textarea class="textarea" rows="5" cols="50"></textarea>
+				<textarea class="textarea" name="introduce" rows="5" cols="50">${org.introduce }</textarea>
 			</div>
 		</div>
 		<div class="row cl">
 			<label class="form-label col-2"><span class="c-red">*</span>备注信息：</label>
 			<div class="formControls col-5">
-				<textarea class="textarea" rows="5" cols="50"></textarea>
+				<textarea class="textarea" name="remark" rows="5" cols="50">${org.remark }</textarea>
 			</div>
 		</div>
 		<div class="row cl">

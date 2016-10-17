@@ -4,7 +4,8 @@ public enum MyResultEnum {
 	SUCCESS(1000,"success"),
 	CODE_ERROR(1001,"请输入正确的验证码"),
 	USER_FAILED(1002,"请输入正确的用户名或密码"),
-	USER_NULL(1003,"用户名或密码为空");
+	USER_NULL(1003,"用户名或密码为空"),
+	ERROR(1004,"error");
 	private int code;
 	private String message;
 	private MyResultEnum(int code, String message) {

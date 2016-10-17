@@ -16,7 +16,7 @@
 	<div class="cl pd-5 bg-1 bk-gray mt-20"> 
 		<span class="r">
 			<a class="btn btn-primary radius" href="${ctx}/sys/org/add">添加</a>
-			<a class="btn btn-danger radius" href="${ctx}/sys/org/edit">修改</a> 
+			<a class="btn btn-danger radius" onclick="orgToEdit();">修改</a> 
 			<a class="btn btn-primary radius" href="javascript:;" onclick="orgDel()">删除</a>
 		</span></div>
 	<div class="mt-20">
@@ -25,37 +25,27 @@
 				<tr class="text-c">
 					<th width="12"></th>
 					<th width="25">编号</th>
-					<th width="25">名称</th>
-					<th width="80">最后修改时间</th>
+					<th width="25">部门代码</th>
+					<th width="25">简称</th>
+					<th width="25">全称</th>
+					<th width="80">介绍</th>
 					<th width="80">操作人</th>
 					<th width="80">备注说明</th>
 				</tr>
 			</thead>
 			<tbody>
-				<tr class="text-c">
-					<td><input type="radio" value="" name=""></td>
-					<td>1</td>
-					<td>统合部</td>
-					<td>2013-10-15 09:24:55</td>
-					<td>尚鸿运</td>
-					<td>默认角色，勿删</td>
-				</tr>
-				<tr class="text-c">
-					<td><input type="radio" value="" name=""></td>
-					<td>2</td>
-					<td>业务部</td>
-					<td>2013-10-15 09:24:55</td>
-					<td>尚鸿运</td>
-					<td>默认角色，勿删</td>
-				</tr>
-				<tr class="text-c">
-					<td><input type="radio" value="" name=""></td>
-					<td>3</td>
-					<td>销售一部</td>
-					<td>2013-10-15 09:24:55</td>
-					<td>尚鸿运</td>
-					<td></td>
-				</tr>
+				<c:forEach items="${list }" var="each" varStatus="status">
+					<tr class="text-c">
+					<td><input type="radio" name="orgid" value="${each.orgId }" name=""></td>
+					<td>${status.index }</td>
+					<td>${each.orgCode }</td>
+					<td>${each.simpleName }</td>
+					<td>${each.fullName }</td>
+					<td>${each.introduce }</td>
+					<td>${each.user.username }</td>
+					<td>${each.remark }</td>
+					</tr>
+				</c:forEach>
 			</tbody>
 		</table>
 	</div>
@@ -66,8 +56,30 @@
 	//角色删除
 	function orgDel(obj,id){
 		layer.confirm('确认要删除吗？',function(index){
-			layer.msg('已删除!');
+			var orgid = $("input[name='orgid']:checked").val();
+				alert(orgid);
+			$.ajax({
+				url:"${ctx}/sys/org/del",
+				data:{orgId:orgid},
+				dataType:"text",
+				type:"POST",
+				success:function(data){
+					if(data == "success"){
+						layer.msg('已删除!');
+						window.location="${ctx}/sys/org/list";
+					}else if(data == "error"){
+						layer.msg("删除失败！");
+						widnow.location="error";
+					}
+				}
+			});
 		});
 	}
+	function orgToEdit(obj,id){
+		var orgid = $("input[name='orgid']:checked").val();
+		alert(orgid);
+		window.location="${ctx}/sys/org/toEdit?orgId="+orgid;				
+	}	
+
 </script>
 </html>

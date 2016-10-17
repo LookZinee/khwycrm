@@ -35,4 +35,7 @@ public class MyResult {
 	public static MyResult userNull(){
 		return new MyResult(MyResultEnum.USER_NULL.getCode(), MyResultEnum.USER_NULL.getMessage());
 	}
+	public static MyResult error(){
+		return new MyResult(MyResultEnum.ERROR.getCode(), MyResultEnum.ERROR.getMessage());
+	}
 }

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.khwy.mapper.OrgMapper">
+	<select id="list" resultType="com.khwy.pojo.Org">
+		select 
+			o.orgId,o.orgCode,o.simpleName,o.fullName,o.introduce,o.operUserId,o.remark 
+		from 
+			t_org o
+	</select>
+	<insert id="add" parameterType="com.khwy.pojo.Org">
+		insert into t_org(orgCode,simpleName,fullName,introduce,operUserId,remark)
+			values('${orgCode}','${simpleName}','${fullName}','${introduce}',${operUserId},'${remark}')
+	</insert>
+	<delete id="del">
+		delete from t_org where orgId=#{orgId}
+	</delete>
+	<select id="findById" resultType="com.khwy.pojo.Org">
+		select * from t_org where orgId = #{ofgId}
+	</select>
+	<update id="edit">
+		update t_org set orgCode='${orgCode}',simpleName='${simpleName}',fullName='${fullName}',
+			introduce='${introduce}',remark='${remark}' 
+		where
+			orgId=${orgId}
+	</update>
+</mapper>

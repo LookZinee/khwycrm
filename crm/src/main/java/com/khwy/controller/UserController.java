@@ -12,6 +12,7 @@ import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
+import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,6 +25,7 @@ import com.khwy.util.MyResult;
 @Controller
 public class UserController {
 
+	private static Logger logger = LoggerFactory.getLogger(UserController.class);
 	@RequestMapping("/logout")
 	public String logout(){
 		try {
@@ -49,10 +51,11 @@ public class UserController {
 		try {
 			UsernamePasswordToken token = new UsernamePasswordToken(user.getUsername(), user.getPassword());
 			Subject subject = SecurityUtils.getSubject();
-			subject.login(token);
 			if( online ==true){
+				System.out.println("记住我");
 				token.setRememberMe(true);
 			}
+			subject.login(token);
 		} catch (AuthenticationException e) {
 			if( e instanceof UnknownAccountException){
 				System.out.println(user.getUsername()+":用户名输入错误");
