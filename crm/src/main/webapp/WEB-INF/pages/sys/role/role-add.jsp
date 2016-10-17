@@ -10,29 +10,27 @@
 	系统管理 <span class="c-gray en">&gt;</span> 角色管理 <span class="c-gray en">&gt;</span> 添加
 	<a class="btn btn-success radius r mr-20" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" >刷新</a></nav>
 <div class="pd-20">
-	<form action="" method="post" class="form form-horizontal" id="form-user-character-add">
+	<form action="${ctx }/sys/role/add" method="post" class="form form-horizontal" id="form-user-character-add">
 		<div class="row cl">
 			<label class="form-label col-2"><span class="c-red">*</span>角色编码：</label>
 			<div class="formControls col-5">
-				<input type="text" class="input-text" value="" placeholder="admin" id="user-name" name="user-name" datatype="*4-16" nullmsg="用户账户不能为空">
+				<input type="text" name="roleCode" class="input-text" value="" placeholder="admin" id="user-name" name="user-name" datatype="*4-16" nullmsg="用户账户不能为空">
 			</div>
 		</div>
 		<div class="row cl">
 			<label class="form-label col-2"><span class="c-red">*</span>角色名称：</label>
 			<div class="formControls col-5">
-				<input type="text" class="input-text" value="" placeholder="" id="user-name" name="user-name" datatype="*4-16" nullmsg="用户账户不能为空">
+				<input type="text" name="roleName" class="input-text" value="" placeholder="" id="user-name" name="user-name" datatype="*4-16" nullmsg="用户账户不能为空">
 			</div>
 		</div>
 		<div class="row cl">
 			<label class="form-label col-2"><span class="c-red">*</span>所属部门：</label>
 			<div class="formControls col-2">
 				<span class="select-box">
-					<select class="select">
-						<option>总经办</option>
-						<option>综合部</option>
-						<option>市场发展部</option>
-						<option>业务一部</option>
-						<option>业务二部</option>
+					<select class="select" name="orgId">
+						<c:forEach items="${orgList }" var="each">
+							<option value="${each.orgId }">${each.fullName }</option>
+						</c:forEach>
 					</select>
 				</span>
 			</div>
@@ -40,7 +38,7 @@
 		<div class="row cl">
 			<label class="form-label col-2"><span class="c-red">*</span>备注信息：</label>
 			<div class="formControls col-5">
-				<textarea class="textarea" rows="5" cols="50"></textarea>
+				<textarea class="textarea" name="remark" rows="5" cols="50"></textarea>
 			</div>
 		</div>
 		<div class="row cl">

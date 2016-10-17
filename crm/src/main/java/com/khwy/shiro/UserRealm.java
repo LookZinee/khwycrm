@@ -3,6 +3,7 @@ package com.khwy.shiro;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;
@@ -30,6 +31,7 @@ public class UserRealm extends AuthorizingRealm{
 		//授权 分配角色
 		String username = (String)principals.getPrimaryPrincipal();
 		User user = userService.findById(username);
+		SecurityUtils.getSubject().getSession(true).setAttribute("currentuser", user);
 		System.out.println(user);
 		String[] roleids = user.getRoleids().split(",");
  		Set<String> roles = new HashSet<>();

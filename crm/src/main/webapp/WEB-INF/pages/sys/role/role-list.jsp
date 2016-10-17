@@ -15,8 +15,8 @@
 	</div>
 	<div class="cl pd-5 bg-1 bk-gray mt-20"> 
 		<span class="r">
-			<a class="btn btn-primary radius" href="${ctx}/sys/role/add">添加</a>
-			<a class="btn btn-danger radius" href="${ctx}/sys/role/edit">修改</a> 
+			<a class="btn btn-primary radius" href="${ctx}/sys/role/toadd">添加</a>
+			<a class="btn btn-danger radius" onclick="roleEdit();">修改</a> 
 			<a class="btn btn-primary radius" href="javascript:;" onclick="roleDel()">删除</a>
 			<a class="btn btn-danger radius" href="${ctx}/sys/role/authc">授权</a> 
 		</span></div>
@@ -34,33 +34,17 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr class="text-c">
-					<td>1</td>
-					<td><input type="radio" value="" name=""></td>
-					<td>系统管理员</td>
-					<td>综合部</td>
-					<td>2013-10-15 09:24:55</td>
-					<td>尚鸿运</td>
-					<td>默认角色，勿删</td>
+				<c:forEach items="${list }" varStatus="status" var="each">
+					<tr class="text-c">
+					<td>${status.index }</td>
+					<td><input type="radio" value="${each.roleId }" name="roleId"></td>
+					<td>${each.roleName }</td>
+					<td>${each.orgName }</td>
+					<td><fmt:formatDate value="${each.createTime }" type="both"/> </td>
+					<td>${each.operName }</td>
+					<td>${each.remark }</td>
 				</tr>
-				<tr class="text-c">
-					<td>2</td>
-					<td><input type="radio" value="" name=""></td>
-					<td>系统管理员</td>
-					<td>综合部</td>
-					<td>2013-10-15 09:24:55</td>
-					<td>尚鸿运</td>
-					<td>默认角色，勿删</td>
-				</tr>
-				<tr class="text-c">
-					<td>3</td>
-					<td><input type="radio" value="" name=""></td>
-					<td>系统管理员</td>
-					<td>综合部</td>
-					<td>2013-10-15 09:24:55</td>
-					<td>尚鸿运</td>
-					<td></td>
-				</tr>
+				</c:forEach>
 			</tbody>
 		</table>
 	</div>
@@ -73,6 +57,15 @@
 		layer.confirm('确认要删除吗？',function(index){
 			layer.msg('已删除!');
 		});
+	}
+	function roleEdit(){
+		var roleId = $("input[name='roleId']:checked").val();
+		alert(roleId);
+		if(!roleId){
+			layer.alert("请选择组织机构");
+		}else{
+			location.href="${ctx}/sys/role/toedit?roleId="+roleId;
+		}
 	}
 </script>
 </html>

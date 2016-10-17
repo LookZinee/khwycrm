@@ -29,7 +29,14 @@ public class MapperTest {
 		}
 		System.out.println("ok");
 	}
-	
+	@Test
+	public static void lala(){
+		MapperTest mt = new MapperTest();
+		mt.hehe();
+	}
+	public void hehe(){
+		System.out.println("hehe");
+	}
 	@Test
 	public void testOrgMapper(){
 		List<Org> list = orgMapper.list();

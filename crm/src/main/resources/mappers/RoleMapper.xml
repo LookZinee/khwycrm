@@ -4,13 +4,57 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.khwy.mapper.RoleMapper">
 	<select id="findById" parameterType="integer" resultType="com.khwy.pojo.Role">
-		select 
-			roleid,rolename,perids 
-		from
-			t_role
+		select * from t_role 
 		<where>
 			1=1
-			and roleid = #{roleid}
+			and
+			roleId=#{roleId}
 		</where>
 	</select>
+	<select id="list" resultType="com.khwy.pojo.Role">
+		select * from t_role
+	</select>
+	<insert id="add">
+		insert into t_role
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="roleName != null">
+				roleName,
+			</if>
+			<if test="roleCode != null">
+				roleCode,
+			</if>
+			<if test="orgId != null">
+				orgId,
+			</if>
+			<if test="createTime != null">
+				createTime,
+			</if>
+			<if test="operId != null">
+				operId,
+			</if>
+			<if test="remark != null">
+				remark,
+			</if>
+		</trim>
+		<trim prefix="values(" suffix=")" suffixOverrides=",">
+			<if test="roleName != null">
+				#{roleName},
+			</if>
+			<if test="roleCode != null">
+				#{roleCode},
+			</if>
+			<if test="orgId != null">
+				#{orgId},
+			</if>
+			<if test="createTime !=null">
+				#{createTime},
+			</if>
+			<if test="operId != null">
+				#{operId},
+			</if>
+			<if test="remark != null">
+				#{remark},
+			</if>
+		</trim>
+	</insert>
 </mapper>
