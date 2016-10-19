@@ -14,19 +14,19 @@
 		<div class="row cl">
 			<label class="form-label col-2"><span class="c-red">*</span>角色编码：</label>
 			<div class="formControls col-5">
-				<label class="form-label l">admin</label>
+				<label class="form-label l">${role.roleCode }</label>
 			</div>
 		</div>
 		<div class="row cl">
 			<label class="form-label col-2"><span class="c-red">*</span>创建时间：</label>
 			<div class="formControls col-5">
-				<label class="form-label l">2016-08-09:12:39:05</label>
+				<label class="form-label l"><fmt:formatDate value="${role.createTime }" type="both"/> </label>
 			</div>
 		</div>
 		<div class="row cl">
 			<label class="form-label col-2"><span class="c-red">*</span>最后操作人：</label>
 			<div class="formControls col-5">
-				<label class="form-label l">XXXX</label>
+				<label class="form-label l">${role.operName }</label>
 			</div>
 		</div>
 		<div class="row cl">

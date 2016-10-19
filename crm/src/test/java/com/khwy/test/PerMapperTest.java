@@ -4,38 +4,37 @@ import java.util.List;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.khwy.mapper.RoleMapper;
-import com.khwy.pojo.Role;
+import com.khwy.mapper.PerMapper;
+import com.khwy.pojo.Per;
+
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations={"classpath:spring/applicationContext-mvc.xml",
 		"classpath:spring/applicationContext-shiro.xml","classpath:spring/applicationContext.xml"})
-public class RoleMapperTest {
+public class PerMapperTest {
+	Logger logger = LoggerFactory.getLogger(PerMapperTest.class);
 	@Autowired
-	private RoleMapper roleMapper;
-	
+	private PerMapper perMapper;
+
+	public PerMapper getPerMapper() {
+		return perMapper;
+	}
+
+	public void setPerMapper(PerMapper perMapper) {
+		this.perMapper = perMapper;
+	}
 	@Test
-	public void listMapper(){
-		List<Role> list = roleMapper.list();
-		for (Role role : list) {
-			System.out.println(role);
+	public void listTest(){
+		List<Per> perList = perMapper.list();
+		for (Per per : perList) {
+			System.out.println(per);
 		}
 	}
-
-	public RoleMapper getRoleMapper() {
-		return roleMapper;
-	}
-
-	public void setRoleMapper(RoleMapper roleMapper) {
-		this.roleMapper = roleMapper;
-	}
-	@Test
-	public void findbyroleid(){
-		Role role = roleMapper.findByRoleId(2);
-		System.out.println(role);
-	} 
+	
 	
 }

@@ -18,7 +18,7 @@
 			<a class="btn btn-primary radius" href="${ctx}/sys/role/toadd">添加</a>
 			<a class="btn btn-danger radius" onclick="roleEdit();">修改</a> 
 			<a class="btn btn-primary radius" href="javascript:;" onclick="roleDel()">删除</a>
-			<a class="btn btn-danger radius" href="${ctx}/sys/role/authc">授权</a> 
+			<a class="btn btn-danger radius" href="javascript:;" onclick="toAutho()">授权</a> 
 		</span></div>
 	<div class="mt-20">
 		<table class="table table-border table-bordered table-bg table-hover table-sort">
@@ -35,7 +35,7 @@
 			</thead>
 			<tbody>
 				<c:forEach items="${list }" varStatus="status" var="each">
-					<tr class="text-c">
+					<tr class="text-c" id="role_id_${each.roleId }">
 					<td>${status.index }</td>
 					<td><input type="radio" value="${each.roleId }" name="roleId"></td>
 					<td>${each.roleName }</td>
@@ -54,8 +54,28 @@
 <script type="text/javascript">
 	//角色删除
 	function roleDel(obj,id){
+		var roleid = $("input[name='roleId']:checked").val();
+		if(roleid == null){
+			layer.msg('请选择要删除的角色！');
+			return false;
+		}
 		layer.confirm('确认要删除吗？',function(index){
-			layer.msg('已删除!');
+			$.ajax({
+				url:'${ctx}/sys/role/del',
+				type:'POST',
+				data:{
+					'roleId':roleid
+				},
+				dataType:'text',
+				success:function(result){
+					$("#role_id_"+roleid).remove();
+					layer.msg('删除成功');
+				},
+				error:function(result){
+					alert(result);
+					layer.alert('删除失败');
+				}
+			});
 		});
 	}
 	function roleEdit(){
@@ -66,6 +86,15 @@
 		}else{
 			location.href="${ctx}/sys/role/toedit?roleId="+roleId;
 		}
+	}
+	function toAutho(){
+		var roleid = $("input[name='roleId']:checked").val();
+		if(roleid == null){
+			layer.alert("请先选择角色!");
+			return false;
+		}
+		window.location="${ctx}/sys/role/auth?roleId="+roleid;
+
 	}
 </script>
 </html>

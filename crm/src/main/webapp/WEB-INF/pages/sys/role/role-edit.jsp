@@ -11,6 +11,7 @@
 	<a class="btn btn-success radius r mr-20" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" >刷新</a></nav>
 <div class="pd-20">
 	<form action="${ctx }/sys/role/edit" method="post" class="form form-horizontal" id="form-user-character-add">
+		<input type="hidden" name="roleId" value="${role.roleId }">
 		<div class="row cl">
 			<label class="form-label col-2"><span class="c-red">*</span>角色编码：</label>
 			<div class="formControls col-5">
@@ -29,14 +30,7 @@
 				<span class="select-box">
 					<select class="select" name="orgId">
 						<c:forEach items="${orgList }" var="each">
-							<c:choose>
-								<c:when test="${role.orgId==each.orgId }">
-									<option value="${each.orgId }" selected="selected">${each.fullName }</option>
-								</c:when>
-								<c:otherwise>
-									<option value="${each.orgId }">${each.fullName }</option>
-								</c:otherwise>
-							</c:choose>
+								<option value="${each.orgId }" <c:if test="${each.orgId==role.orgId }">selected="selected"</c:if> >${each.fullName }</option>
 						</c:forEach>
 					</select>
 				</span>

@@ -3,17 +3,142 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.khwy.mapper.RoleMapper">
+	<resultMap type="com.khwy.model.RoleModel" id="map">
+		<id column="roleId" property="roleId" jdbcType="INTEGER" />
+		<result column="rolename" property="roleName" jdbcType="VARCHAR" />
+		<result column="orgid" property="orgId" jdbcType="INTEGER" />
+		<result column="operid" property="operId" jdbcType="INTEGER" />
+		<result column="remark" property="remark" jdbcType="VARCHAR" />
+		<result column="createtime" property="createTime" jdbcType="TIMESTAMP"/>
+	</resultMap>
+	<resultMap type="com.khwy.pojo.Role" id="rolemap">
+		<id column="roleId" property="roleId" jdbcType="INTEGER" />
+		<result column="rolename" property="roleName" jdbcType="VARCHAR" />
+		<result column="orgid" property="orgId" jdbcType="INTEGER" />
+		<result column="fullname" property="orgName" jdbcType="VARCHAR" />
+		<result column="operid" property="operId" jdbcType="INTEGER" />
+		<result column="username" property="operName" jdbcType="VARCHAR" />
+		<result column="remark" property="remark" jdbcType="VARCHAR" />
+		<result column="createtime" property="createTime" jdbcType="TIMESTAMP"/>
+	</resultMap>
 	<select id="findById" parameterType="integer" resultType="com.khwy.pojo.Role">
-		select 
-			roleid,rolename,perids 
-		from
-			t_role
+		select * from t_role 
 		<where>
 			1=1
-			and roleid = #{roleid}
+			and
+			roleId=#{roleId}
 		</where>
 	</select>
 	<select id="list" resultType="com.khwy.pojo.Role">
-		select r.*,o.*,u.* from t_role r,t_org o ,t_user u where r.orgid=o.orgid and r.operid=u.userid
+		select * from t_role
+	</select>
+	<insert id="add">
+		insert into t_role
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="roleName != null">
+				roleName,
+			</if>
+			<if test="roleCode != null">
+				roleCode,
+			</if>
+			<if test="orgId != null">
+				orgId,
+			</if>
+			<if test="createTime != null">
+				createTime,
+			</if>
+			<if test="operId != null">
+				operId,
+			</if>
+			<if test="remark != null">
+				remark,
+			</if>
+		</trim>
+		<trim prefix="values(" suffix=")" suffixOverrides=",">
+			<if test="roleName != null">
+				#{roleName},
+			</if>
+			<if test="roleCode != null">
+				#{roleCode},
+			</if>
+			<if test="orgId != null">
+				#{orgId},
+			</if>
+			<if test="createTime !=null">
+				#{createTime},
+			</if>
+			<if test="operId != null">
+				#{operId},
+			</if>
+			<if test="remark != null">
+				#{remark},
+			</if>
+		</trim>
+	</insert>
+	<update id="edit" parameterType="map">
+		update t_role 
+		<set>
+			<trim suffixOverrides=",">
+				<if test="role.roleName != null">
+					roleName=#{role.roleName},
+				</if>
+				<if test="role.orgId != null">
+					orgId=#{role.orgId},
+				</if>
+			
+				<if test="role.operId != null">
+					operId=#{role.operId},
+				</if>
+				<if test="role.remark != null">
+					remark=#{role.remark},
+				</if>
+				<if test="role.createTime != null">
+					createtime=#{role.createTime},
+				</if>
+			</trim>
+		</set>
+		<where>
+			<trim prefix="1=1" suffixOverrides=",">
+				<if test="parameter.roleId != null">
+					and roleId=#{parameter.roleId},
+				</if>
+				<if test="parameter.roleName != null">
+					and roleName=#{parameter.roleName},
+				</if>
+				<if test="parameter.orgId != null">
+					and orgId=#{parameter.orgId},
+				</if>
+				
+				<if test="parameter.operId != null">
+					and operId=#{parameter.operId},
+				</if>
+				<if test="parameter.remark != null">
+					and remark=#{parameter.remark},
+				</if>
+			</trim>
+		</where>
+	</update>
+	<delete id="del" parameterType="java.lang.Integer">
+		delete from t_role 
+			<where>
+				<trim>
+					roleid=#{roleId}
+				</trim>
+			</where>
+	</delete>
+	<select id="findByRoleId" resultMap="rolemap" parameterType="java.lang.Integer">
+		select r.orgid,o.fullname,r.roleCode,r.rolename,
+			r.orgid,r.createtime,r.operid,u.username,r.remark,r.perids
+		from t_role r
+		left join t_org o
+		on r.orgid= o.orgid
+		left join t_user u
+		on r.operid = u.userid
+		<where>
+			1=1
+			<trim prefix="and">
+				r.roleid=#{roleId}
+			</trim>
+		</where>
 	</select>
 </mapper>
